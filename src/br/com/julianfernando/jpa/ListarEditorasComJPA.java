@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 
 public class ListarEditorasComJPA {
 
@@ -17,11 +16,10 @@ public class ListarEditorasComJPA {
 		// criar o manager a partir do factory para poder realizar operações no banco de dados
 		EntityManager manager = factory.createEntityManager();
 		
-		// cria a Query com JPQL
-		Query query = manager.createQuery("SELECT e FROM Editora e");
+		EditoraRepository repository = new EditoraRepository(manager);
 		
 		// obtem a lista de objetos Editora
-		List<Editora> listaDeEditoras = query.getResultList();
+		List<Editora> listaDeEditoras = repository.buscaTodos();
 		
 		// percorre imprimindo o nome e email das Editoras
 		for (Editora editora : listaDeEditoras) {
@@ -32,5 +30,4 @@ public class ListarEditorasComJPA {
 		manager.close();
 		factory.close();
 	}
-
 }

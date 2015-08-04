@@ -14,6 +14,8 @@ public class InsereEditoraComJPA {
 		
 		EntityManager manager = factory.createEntityManager();
 		
+		EditoraRepository repository = new EditoraRepository(manager);
+		
 		Editora editora1 = new Editora();
 		
 		Scanner entrada = new Scanner(System.in);
@@ -23,10 +25,11 @@ public class InsereEditoraComJPA {
 		System.out.println("Informe o email da editora:");
 		editora1.setEmail(entrada.nextLine());
 		
-		manager.persist(editora1);
+		repository.adiciona(editora1);
 		
 		manager.getTransaction().begin();
 		manager.getTransaction().commit();
+		
 		manager.close();
 		factory.close();
 	}
