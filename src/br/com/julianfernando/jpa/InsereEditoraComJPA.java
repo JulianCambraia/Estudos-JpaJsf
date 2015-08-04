@@ -30,5 +30,4 @@ public class InsereEditoraComJPA {
 		manager.close();
 		factory.close();
 	}
-
 }
